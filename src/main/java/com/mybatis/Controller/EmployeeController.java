@@ -75,7 +75,7 @@ public class EmployeeController {
             String alipayPublicKey = "xxxxx";
             String appPrivateKey = "xxxx";
 
-            AlipayClient alipayClient = new DefaultAlipayClient("https://openapi.alipay.com/gateway.do", "2015120200903763", appPrivateKey, "json", "utf-8", alipayPublicKey, "RSA2");
+            AlipayClient alipayClient = new DefaultAlipayClient("https://openapi.alipay.com/gateway.do", "XXX", appPrivateKey, "json", "utf-8", alipayPublicKey, "RSA2");
             //实例化具体API对应的request类,类名称和接口名称对应,当前调用接口名称：alipay.trade.app.pay
             AlipayTradeAppPayRequest request = new AlipayTradeAppPayRequest();
             //SDK已经封装掉了公共参数，这里只需要传入业务参数。以下方法为sdk的model入参方式(model和biz_content同时存在的情况下取biz_content)。
