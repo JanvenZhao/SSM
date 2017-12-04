@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="test@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.1">
+    <root id="1"/>
+    <schema id="2" parent="1" name="test">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mysql"/>
+    <schema id="5" parent="1" name="performance_schema"/>
+    <schema id="6" parent="1" name="phpmyadmin"/>
+    <schema id="7" parent="1" name="test_01"/>
+    <table id="8" parent="2" name="articles"/>
+    <table id="9" parent="2" name="employee"/>
+    <table id="10" parent="2" name="users"/>
+    <routine id="11" parent="2" name="AddGeometryColumn">
+      <RoutineKind>procedure</RoutineKind>
+    </routine>
+    <routine id="12" parent="2" name="DropGeometryColumn">
+      <RoutineKind>procedure</RoutineKind>
+    </routine>
+    <column id="13" parent="8" name="id">
+      <Position>1</Position>
+      <DataType>mediumint(8)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="14" parent="8" name="title">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="15" parent="8" name="content">
+      <Position>3</Position>
+      <DataType>longtext|0</DataType>
+    </column>
+    <column id="16" parent="8" name="add_date">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="17" parent="8" name="hits">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="18" parent="8" name="origin">
+      <Position>6</Position>
+      <DataType>varchar(500)|0</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <column id="19" parent="8" name="tags">
+      <Position>7</Position>
+      <DataType>varchar(45)|0</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <index id="20" parent="8" name="add_date">
+      <ColNames>add_date</ColNames>
+    </index>
+    <key id="21" parent="8" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="22" parent="9" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="23" parent="9" name="lastName">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="24" parent="9" name="email">
+      <Position>3</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <key id="25" parent="9" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="26" parent="10" name="login">
+      <Position>1</Position>
+      <DataType>varchar(8)|0</DataType>
+    </column>
+    <column id="27" parent="10" name="userid">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="28" parent="10" name="projid">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <argument id="29" parent="11" name="catalog">
+      <DataType>varchar(64)|0</DataType>
+    </argument>
+    <argument id="30" parent="11" name="t_schema">
+      <DataType>varchar(64)|0</DataType>
+    </argument>
+    <argument id="31" parent="11" name="t_name">
+      <DataType>varchar(64)|0</DataType>
+    </argument>
+    <argument id="32" parent="11" name="geometry_column">
+      <DataType>varchar(64)|0</DataType>
+    </argument>
+    <argument id="33" parent="11" name="t_srid">
+      <DataType>int(11)|0</DataType>
+    </argument>
+    <argument id="34" parent="12" name="catalog">
+      <DataType>varchar(64)|0</DataType>
+    </argument>
+    <argument id="35" parent="12" name="t_schema">
+      <DataType>varchar(64)|0</DataType>
+    </argument>
+    <argument id="36" parent="12" name="t_name">
+      <DataType>varchar(64)|0</DataType>
+    </argument>
+    <argument id="37" parent="12" name="geometry_column">
+      <DataType>varchar(64)|0</DataType>
+    </argument>
+  </database-model>
+</dataSource>
