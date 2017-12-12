@@ -9,6 +9,5 @@ import java.util.*;
  */
 public interface EmployeeService {
     Employee getEmployee(int id);
-
     List<Employee> getEmployees();
 }
