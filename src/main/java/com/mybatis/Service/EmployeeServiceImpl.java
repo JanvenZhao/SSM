@@ -33,4 +33,27 @@ public class EmployeeServiceImpl implements EmployeeService{
     public List<Employee> getEmployees() {
         return employeeMapper.getAllEmployees();
     }
+
+    public void addEmployee(int id,String lastName,String firstName,String email){
+        Employee employee = new Employee();
+        employee.setLastName(lastName);
+        employee.setEmail(email);
+        employeeMapper.addEmployee(employee);
+    }
+
+    public Employee getNewOne(){
+        return employeeMapper.reurnTheNewOne();
+    }
+
+    public void deleteEmp(int id){
+        employeeMapper.deleteEmp(id);
+    }
+
+
+    public  Employee modifyEmp(Employee employee){
+         employeeMapper.modifyEmp(employee);
+         return employeeMapper.getEmployeeById(employee.getId());
+    }
+
+
 }

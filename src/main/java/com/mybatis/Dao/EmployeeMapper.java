@@ -17,4 +17,16 @@ public interface EmployeeMapper {
 
     @Select("select * from employee")
     List<Employee> getAllEmployees();
+
+    @Insert("insert into employee (lastName,email,firstName) values (#{lastName},#{email},'')")
+    void addEmployee(Employee employee);
+
+    @Select("select id,lastName,email from employee order by id desc limit 1")
+    Employee reurnTheNewOne();
+
+    @Delete("delete from employee where id=#{id}")
+    void deleteEmp(int id);
+
+    @Update("update employee set lastName=#{lastName},email=#{email} where id=#{id}")
+    void modifyEmp(Employee emp);
 }

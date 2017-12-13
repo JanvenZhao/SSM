@@ -5,11 +5,9 @@ import org.springframework.stereotype.Controller;
 import com.mybatis.Model.Employee;
 import com.mybatis.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -49,14 +47,42 @@ public class EmployeeController {
 
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/addEmp")
+    public Employee getEmplyeeByID(@RequestParam("id") int  id,
+                                   @RequestParam("firName") String fir,
+                                   @RequestParam("lastName") String last,
+                                   @RequestParam("email") String email){
+
+        employeeService.addEmployee(id,last,fir,email);
+
+        return employeeService.getNewOne();
+
+    }
 
 
+    @ResponseBody
+    @RequestMapping(value = "/delete")
+    public Map deleteEmp(@RequestParam("id") int id){
+        Map map = new HashMap();
+        map.put("message","删除成功");
+        employeeService.deleteEmp(id);
+        return map;
+    }
 
+    @ResponseBody
+    @RequestMapping(value = "/modify")
+    public Employee deleteEmp(@RequestParam("id") int id,
+                         @RequestParam("lastName") String last,
+                         @RequestParam("email") String email){
 
+        Employee employee = new Employee();
+        employee.setEmail(email);
+        employee.setLastName(last);
+        employee.setId(id);
+        return employeeService.modifyEmp(employee);
 
-
-
-
+    }
 
 
 }
