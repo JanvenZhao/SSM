@@ -41,6 +41,7 @@ public class EmployeeController {
             map.setSuccessObject(employees);
         }else {
             map.setFailureMessage("获取数据失败");
+            log.error("Data get Error");
         }
         return map;
 
@@ -60,6 +61,7 @@ public class EmployeeController {
                 map.setSuccessObject(employee);
             }else {
                 map.setFailureMessage("数据获取失败");
+                log.error("getData Error id =" +id);
             }
         }
 
@@ -82,6 +84,7 @@ public class EmployeeController {
             map.setSuccessObject(employee);
         }else {
             map.setFailureMessage("添加失败");
+            log.error("Add Error---");
         }
         return map;
 
@@ -97,6 +100,7 @@ public class EmployeeController {
             map.setSuccessObject("");
         }catch (Exception e){
             map.setFailureMessage("删除失败");
+            log.error("delete Error id = " + id);
         }
         return map;
     }
@@ -119,6 +123,7 @@ public class EmployeeController {
             map.setSuccessObject(emp);
         }else {
             map.setFailureMessage("更新数据失败");
+            log.error("update error" + "id =" +id +"lastName ="+ last +"email ="+ email);
         }
 
         return map;
