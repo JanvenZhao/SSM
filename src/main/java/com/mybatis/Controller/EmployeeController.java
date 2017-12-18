@@ -14,6 +14,8 @@ import org.apache.log4j.Logger;
 
 import javax.validation.constraints.Null;
 
+import base.HttpResultMap;
+
 /**
  * @Author: janven
  * @Descrption: Created in ${Time} on 2017/11/28.
@@ -30,42 +32,58 @@ public class EmployeeController {
     @ResponseBody
     @RequestMapping(value="/listAll",method= RequestMethod.GET)
 
-    public Map list(Map<String,Object> map){
+    public Map list(){
         List<Employee> employees = employeeService.getEmployees();
-       /*测试用
-      if(employees==null)
-         System.out.println("null");
-      else
-         System.out.println(employees);*/
 
-        map.put("employees",employees);
+        HttpResultMap map = new HttpResultMap();
+        if (employees != null)
+        {
+            map.setSuccessObject(employees);
+        }else {
+            map.setFailureMessage("获取数据失败");
+        }
         return map;
 
     }
 
     @ResponseBody
     @RequestMapping(value = "/getID")
-    public Employee getEmplyeeByID(@RequestParam("id") int  id){
+    public Map getEmplyeeByID(@RequestParam("id") int  id){
+
+        HttpResultMap map = new HttpResultMap();
 
         if (id == 0){
-            log.error("id 不能为0");
+            map.setFailureMessage("id 不能为0");
+        }else {
+            Employee employee = employeeService.getEmployee(id);
+            if (employee != null){
+                map.setSuccessObject(employee);
+            }else {
+                map.setFailureMessage("数据获取失败");
+            }
         }
 
-        return employeeService.getEmployee(id);
-
+        return map;
 
     }
 
     @ResponseBody
     @RequestMapping(value = "/addEmp")
-    public Employee getEmplyeeByID(@RequestParam("id") int  id,
+    public Map getEmplyeeByID(@RequestParam("id") int  id,
                                    @RequestParam("firName") String fir,
                                    @RequestParam("lastName") String last,
                                    @RequestParam("email") String email){
 
+        HttpResultMap map = new HttpResultMap();
         employeeService.addEmployee(id,last,fir,email);
+        Employee employee = employeeService.getNewOne();
 
-        return employeeService.getNewOne();
+        if (employee != null){
+            map.setSuccessObject(employee);
+        }else {
+            map.setFailureMessage("添加失败");
+        }
+        return map;
 
     }
 
@@ -73,15 +91,19 @@ public class EmployeeController {
     @ResponseBody
     @RequestMapping(value = "/delete")
     public Map deleteEmp(@RequestParam("id") int id){
-        Map map = new HashMap();
-        map.put("message","删除成功");
-        employeeService.deleteEmp(id);
+        HttpResultMap map = new HttpResultMap();
+        try {
+            employeeService.deleteEmp(id);
+            map.setSuccessObject("");
+        }catch (Exception e){
+            map.setFailureMessage("删除失败");
+        }
         return map;
     }
 
     @ResponseBody
     @RequestMapping(value = "/modify")
-    public Employee deleteEmp(@RequestParam("id") int id,
+    public Map deleteEmp(@RequestParam("id") int id,
                          @RequestParam("lastName") String last,
                          @RequestParam("email") String email){
 
@@ -89,9 +111,16 @@ public class EmployeeController {
         employee.setEmail(email);
         employee.setLastName(last);
         employee.setId(id);
-        return employeeService.modifyEmp(employee);
 
+        HttpResultMap map = new HttpResultMap();
+
+        Employee emp = employeeService.modifyEmp(employee);
+        if (emp != null){
+            map.setSuccessObject(emp);
+        }else {
+            map.setFailureMessage("更新数据失败");
+        }
+
+        return map;
     }
-
-
 }
