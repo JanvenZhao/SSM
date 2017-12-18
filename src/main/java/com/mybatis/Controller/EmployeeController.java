@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.apache.log4j.Logger;
 
+import javax.validation.constraints.Null;
 
 /**
  * @Author: janven
@@ -18,6 +20,9 @@ import java.util.Map;
  */
 @Controller
 public class EmployeeController {
+
+    protected Logger log = Logger.getLogger(EmployeeController.class);
+
 
     @Autowired
     private EmployeeService employeeService;
@@ -41,6 +46,10 @@ public class EmployeeController {
     @ResponseBody
     @RequestMapping(value = "/getID")
     public Employee getEmplyeeByID(@RequestParam("id") int  id){
+
+        if (id == 0){
+            log.error("id 不能为0");
+        }
 
         return employeeService.getEmployee(id);
 
